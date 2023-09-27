@@ -4,7 +4,11 @@ import matplotlib.pyplot as plt
 
 class KMeans(object):
     
-    def __init__(self, data: List[np.ndarray], k: int=3):
+    def __init__(self, data: np.ndarray, k: int=3):
+        assert isinstance(data, np.ndarray)
+        assert isinstance(k, int)
+        assert len(data.shape) == 2
+        
         self.data = data
         self.k = k
         self.centroids = self.data[np.random.choice(len(self.data), self.k, replace=False)]
