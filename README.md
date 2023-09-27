@@ -1,2 +1,2 @@
-# InterviewQuestions
-Solution of live coding questions I got asked during job search
+# LiveCodingSolutions
+Solutions to live coding questions I got asked during job search
