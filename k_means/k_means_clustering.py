@@ -1,6 +1,5 @@
 from typing import List
 import numpy as np
-import random
 import matplotlib.pyplot as plt
 
 class KMeans(object):
@@ -8,7 +7,6 @@ class KMeans(object):
     def __init__(self, data: List[np.ndarray], k: int=3):
         self.data = data
         self.k = k
-        self.distances = np.zeros(self.k)
         self.centroids = self.data[np.random.choice(len(self.data), self.k, replace=False)]
         self.cluster_assignment = np.array([0 for _ in range(len(self.data))])
 
@@ -18,12 +16,16 @@ class KMeans(object):
             
             updated = False
             for data_ind, data_point in enumerate(self.data):
+                min_distance = np.inf
+                min_distance_index = None
                 for centroid_index, centroid in enumerate(self.centroids):
-                    self.distances[centroid_index] = np.linalg.norm(data_point - centroid)
+                    distance = np.linalg.norm(data_point - centroid)
+                    if distance < min_distance:
+                        min_distance = distance
+                        min_distance_index = centroid_index
 
-                cluster_index = np.argmin(self.distances)
-                if cluster_index != self.cluster_assignment[data_ind]:
-                    self.cluster_assignment[data_ind] = cluster_index
+                if min_distance_index != self.cluster_assignment[data_ind]:
+                    self.cluster_assignment[data_ind] = min_distance_index
                     updated = True
             
             if not updated:
