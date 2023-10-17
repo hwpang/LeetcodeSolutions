@@ -1,2 +1,2 @@
-# LiveCodingSolutions
-My solutions to Leetcode type questions
+# LeetcodeSolutions
+My solutions to Leetcode-type questions
